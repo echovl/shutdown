@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 var mustShutdownNow = false
@@ -29,9 +30,9 @@ func main() {
 		json.NewEncoder(w).Encode(resp)
 	})
 
-    fmt.Println("Server running at port 8000")
+	fmt.Println(fmt.Sprintf("Server running at port %s", os.Getenv("PORT")))
 
-	if err := http.ListenAndServe(":8000", nil); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf("0.0.0.0:%s", os.Getenv("PORT")), nil); err != nil {
 		log.Fatal(err)
 	}
 }
