@@ -29,7 +29,9 @@ func main() {
 		json.NewEncoder(w).Encode(resp)
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+    fmt.Println("Server running at port 8000")
+
+	if err := http.ListenAndServe(":8000", nil); err != nil {
 		log.Fatal(err)
 	}
 }
